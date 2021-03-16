@@ -1,0 +1,10 @@
+.col-md-12 {
+    background-color: peachpuff;
+    
+}
+h1 {
+    text-align: center;
+}
+#uprostred{
+    -ms-flex-item-align: center;
+}
