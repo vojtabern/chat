@@ -13,10 +13,19 @@ const io = socketio(server);
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', (socket) => {
+    const uzivatel = join(socket.id, username, mistnost);
+
+    socket.join(uzivatel.mistnost);
+
+    /*socket.on('chat', message => {
+        console.log(message);
+        outputMessage(message);
+    });*/
+
     //uchová poslanou zprávu
     socket.on('chat', msg => {
         //rozesilá ostatním
-        io.emit('chat', msg);
+        io.to(uzivatel.mistnost).emit('chat', (msg))
     });
 })
 
@@ -25,5 +34,5 @@ server.listen(PORT, function() {
     console.log(`Server nasloucha na portu ${PORT}`);
 })
 
-
+socket.emit('chat', {username, mistnost});
 
